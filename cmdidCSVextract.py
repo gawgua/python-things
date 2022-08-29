@@ -12,10 +12,10 @@ def convert(csv_path: str, json_path='./packetIds.json'):
     result = {'13371337': 'PacketHead'}
 
     with open(csv_path, 'r') as csv_cmdid:
-        csv_rows = csv.DictReader(csv_cmdid)
+        csv_rows = csv.reader(csv_cmdid)
         for row in csv_rows:
-            packetName = row['Name']
-            cmdid = row['ID']
+            packetName = row[0]
+            cmdid = row[1]
             result[cmdid] = packetName
 
     with open(json_path, 'w') as json_cmdid:
